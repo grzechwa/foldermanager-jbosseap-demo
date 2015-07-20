@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Aplikacja</title>
+		<h:outputStylesheet name="user.css" library="css" />
+</h:head>
+
+<h:body>
+<nav>
+<div class="page_wrapper">
+
+	<ui:insert name="logged" />
+	
+	<ui:insert name="header">
+		<ui:include src="/templates/header-snippet.xhtml" />
+		
+	</ui:insert>
+	
+		<ui:insert name="nav-line" />	
+	
+		<div id="content" >
+			<ui:insert name="content"></ui:insert>
+		</div>
+	</div>
+	
+	<ui:insert name="footer">
+		<div id="footer" class="clear">
+			<ui:include src="/templates/footer-snippet.xhtml" />
+		</div>
+	</ui:insert>
+</nav>
+</h:body>
+
+</html>

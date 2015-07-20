@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello Admin</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+			<h:form>
+				<h:button value="Powrot" outcome="uAdminList?faces-redirect=true"/>
+			</h:form>
+		</div>
+	</ui:define>
+
+
+	<ui:define name="content">
+	<h:form class="edit">
+		<div class="field-all clear">
+		<fieldset>		<legend>Dodawanie roli do uzytkownika</legend>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="dir-name" value="Name: " />
+				<h:outputLabel id="dir-name" value="#{userEditBB.name}" />
+				<h:outputLabel for="user-id" value="Id" />
+				<h:outputLabel id="user-id" value="#{userEditBB.iduser}" var="iduser"/>
+
+				<h:outputLabel for="user-id" value="Role akutalne" />
+				  <ui:repeat value="#{userEditBB.roles}" var="row" varStatus="status">
+					<h:outputLabel value="#{row.group}" /><br />
+  				    </ui:repeat>
+
+			    <h:outputLabel for="dir2-state" value="Wybierz role" />
+				    <h:selectOneMenu id="dir2-state" 
+           	        	value="#{userEditBB.group}" var="lista">
+				        <f:selectItems value="#{roleListBB.list}" var="st" 
+				        itemLabel="#{st.group}" itemValue="#{st.idrole}" />
+				    </h:selectOneMenu>
+
+		 	<h:commandButton action="#{userEditBB.addRole(userEditBB.iduser, userEditBB.group)}" value="Dodaj" />
+		 
+		</h:panelGrid>
+		</fieldset>
+		</div>
+	</h:form>
+	</ui:define>
+	</div>
+
+</ui:composition>
+</html>

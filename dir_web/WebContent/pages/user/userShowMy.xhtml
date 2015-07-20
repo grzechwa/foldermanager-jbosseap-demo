@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello  User</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+
+	<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div>		<div class="clear" />
+		
+	</ui:define>
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+		
+		<h:form>
+			<h:button value="Powrot" outcome="userStart.xhtml?faces-redirect=true"/>
+		</h:form>
+		
+		</div>
+		</ui:define>
+		
+		<ui:define name="content">
+		<h:form>
+		<div class="field-table-center clear">
+		<fieldset>		<legend>Lista uzytkownika</legend>
+
+		<h:panelGrid columns="4">
+			<h:dataTable value="#{loginBB.user}" var="userlist" 
+				cellpadding="5" border="1" cellspacing="0" 
+				style="width:100%;" >
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nazwa Użytkownika" />
+					</f:facet>
+						<h:outputText value="#{userlist.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Katalogi" />
+					</f:facet>
+					<ui:repeat var="dir" value="#{userlist.dirs}">
+						<h:outputText value="#{dir.name}" /><br />
+					</ui:repeat>
+				</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ifnrmacje szczegółowe" /><br />
+				</f:facet>
+				<ui:repeat var="lista" value="#{userlist.dirs}">
+					<h:outputText value="#{lista.size} -- #{lista.state.state}" /><br />
+				</ui:repeat>
+				</h:column>
+			
+				<h:column>
+				<f:facet name="header">
+				<h:outputText value="Opcje" />
+					</f:facet>
+
+						<ui:repeat var="lista" varStatus="status" value="#{userlist.dirs}">									
+								<h:commandButton value="Usun katalog" 
+								action="#{userEditBB.delDir(userlist.iduser, userlist.dirs.get(status.index))}" 												
+																	style="margin-right: 1em;"/><br />
+						</ui:repeat>
+
+					</h:column>
+			</h:dataTable>
+		</h:panelGrid>
+
+		</fieldset>
+
+		</div>
+		</h:form>
+		</ui:define>
+	</div>
+
+</ui:composition>
+</html>

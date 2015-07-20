@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/admin-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello from Admin</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+
+	<ui:define name="nav-line">
+	<div class="nav-line" >	
+		<h:form>
+			<h:button value="Powrot" outcome="rAdminList?faces-redirect=true"/>
+		</h:form>
+	</div>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+		<div class="field-all clear">
+		<fieldset>		<legend>Dodawanie uzytkownika do roli</legend>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="role-name" value="Grupa: " />
+				<h:outputLabel id="role-name" value="#{roleEditBB.group}" />
+				<h:outputLabel for="role-id" value="Id" />
+				<h:outputLabel id="role-id" value="#{roleEditBB.idrole}" var="idrole"/>
+
+				<h:outputLabel for="user-id" value="Uztykownicy akutalni" />
+				  <ui:repeat value="#{roleEditBB.users}" var="row" varStatus="status">
+					<h:outputLabel value="#{row.name}" /><br />
+  				    </ui:repeat>
+
+			    <h:outputLabel for="dir2-state" value="Wybierz uzytkownika" />
+				    <h:selectOneMenu id="dir2-state" 
+           	        	value="#{roleEditBB.name}" var="lista">
+				        <f:selectItems value="#{userListBB.list}" var="st" 
+				        itemLabel="#{st.name}" itemValue="#{st.iduser}" />
+				    </h:selectOneMenu>
+
+		 	<h:commandButton action="#{roleEditBB.addUser(roleEditBB.idrole, roleEditBB.name)}" value="Dodaj" />
+		 	<f:attribute name="collectionType" value="java.util.ArrayList" />
+			</h:panelGrid>
+		</fieldset>
+		</div>
+		</h:form>
+		</ui:define>
+	</div>
+
+</ui:composition>
+</html>

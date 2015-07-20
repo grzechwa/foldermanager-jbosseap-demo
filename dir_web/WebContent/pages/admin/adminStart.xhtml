@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+
+	<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+
+
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+			
+		<h:form>
+
+			<div class="on-click">
+				<h:commandButton value="Uzytkownicy" action="uAdminList?faces-redirect=true"  
+				class="clear" />	
+			</div>
+			<div class="on-click" style="padding-right: 3%">
+				<h:commandButton value="Grupy" action="rAdminList?faces-redirect=true"  
+				class="clear" />
+			</div>
+			<div class="on-click">
+				<h:commandButton value="Wyloguj" action="#{loginBB.doLogout()}"/>		
+			</div>
+		</h:form>
+		
+		</div>	
+	</ui:define>
+	
+	<ui:define name="content">
+		<div class="field-table-all">	
+		
+		<fieldset>		<legend>Tabela folderów</legend>
+		<h:panelGrid columns="4">
+			<h:dataTable value="#{dirListBB.list}" var="dirlist" 
+			cellpadding="5" border="1" cellspacing="0" style="width:100%; text-align: center" >
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+						<h:outputText value="#{dirlist.iddir}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nazwa folderu" />
+					</f:facet>
+						<h:outputText value="#{dirlist.name}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rozmiar (B)" />
+					</f:facet>
+						<h:outputText value="#{dirlist.size}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stan rezerwacji" />
+					</f:facet>
+						<h:outputText value="#{dirlist.state.state}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Użytkownik" />
+					</f:facet>
+						<h:outputText value="#{dirlist.user.name}" />
+				</h:column>
+				
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="Opcje" />
+				</f:facet>
+				<h:form>
+					<h:commandButton value="szczegóły"
+						action="#{dirListBB.editDir(dirlist)}" />
+				</h:form>
+				</h:column>
+			</h:dataTable>
+		</h:panelGrid>
+		</fieldset>
+	
+		</div>
+		
+		<div class="field-filtr">
+		<fieldset >		<legend>Filtruj</legend>
+		<h:form> 
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="katalog:" />
+				<h:inputText value="#{dirListBB.name}" />
+				<div></div>
+				<h:commandButton value="Szukaj" update="table" style="float: right; margin-right: 5%"/>
+			</h:panelGrid>
+		</h:form>
+		</fieldset>
+		</div>
+		
+		<div class="field-filtr" style="margin-top: 2%">
+		<fieldset> <legend>Opcje dodatkowe</legend>
+		<h:form>
+			<ul>
+				<li><h:commandLink action="#{dirListBB.newDir()}" 	value="Dodaj nowy katalog" /></li>
+				<!-- Wskazuje lokalny folder 
+					<li><h:commandLink action="adminDir.xhtml" 			value="Wyswietl podglad folderu" /></li>
+				 -->
+				<li><h:commandLink action="#{userListBB.newUser()}" value="Dodaj nowego uzytkownika" /></li>
+				<li><h:commandLink action="#{roleListBB.newRole()}"	value="Dodaj nowa grupe" /></li>
+			</ul>
+		</h:form>
+		</fieldset>
+		</div>
+	</ui:define>
+</div> 						<!-- end page-wrapper -->
+
+</ui:composition>
+</html>

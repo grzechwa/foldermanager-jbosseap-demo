@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+	<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+	
+	<h:form>
+		<h:button value="Powrot" outcome="adminStart?faces-redirect=true"/>
+	</h:form>
+
+	</div>
+	
+	</ui:define>
+	<ui:define name="content">
+	<div class="field-table-all">
+	<fieldset>		<legend>Uzytkownicy w sytemie</legend>
+	<h:panelGrid columns="4">
+			<h:dataTable value="#{userListBB.list}" var="userlist" 
+			cellpadding="5" border="1" cellspacing="0" style="width:100%; text-align: center">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+						<h:outputText value="#{userlist.iduser}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nazwa" />
+					</f:facet>
+						<h:outputText value="#{userlist.name}" />
+				</h:column>
+		
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Foldery" />
+					</f:facet>
+					<h:form>
+						<ui:repeat var="dir" varStatus="status" value="#{userlist.dirs}">
+							<h:outputText value="#{dir.name}" />
+							<!--  dir.iddir lub state index -->
+							<h:commandButton action="#{userEditBB.delDirUser(userlist.iduser, dir.iddir)}" value="Usun" />
+							<br />
+						</ui:repeat>
+						<br />
+					</h:form>
+						
+				</h:column>
+				
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Grupa" />
+					</f:facet>
+					<h:form>
+						<ui:repeat var="us" varStatus="status" value="#{userlist.roles}">
+							<h:outputText value="#{us.group}" />
+							<h:commandButton action="#{userEditBB.delRole(userlist.iduser, us.idrole )}" value="Usun" />
+							<br />
+						</ui:repeat>
+					</h:form>
+				</h:column >
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nowa rola" />
+					</f:facet>
+					<h:form>
+						<h:commandButton action="#{userListBB.addRoleUser(userlist)}" value="Nowa rola" rendered="#{userlist.roles.size() lt roleListBB.list.size()}"/>
+					</h:form>						
+				</h:column>
+			
+				<h:column >
+					<f:facet name="header">
+						<h:outputText value="Usun użytkownika" />
+					</f:facet>
+					<h:form >
+						<h:commandButton action="#{userListBB.deleteUser(userlist)}" value="Usun usera" />
+					</h:form>
+				</h:column>
+			</h:dataTable>
+		</h:panelGrid>
+		</fieldset>
+		
+		</div>
+		
+	<div class="field-filtr">		
+	<fieldset >		<legend>Filtruj</legend>
+	<h:form> 
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputLabel value="Użytkownik:" />
+			<h:inputText value="#{userListBB.name}" />
+			<div></div>
+				<h:commandButton value="Szukaj" update="table" style="float: right; margin-right: 5%"/>
+				<f:param name="name" value="#{userListBB.name}" />
+		</h:panelGrid>
+	</h:form>
+	</fieldset>
+	</div>
+	</ui:define>
+</div>
+
+</ui:composition>
+</html>

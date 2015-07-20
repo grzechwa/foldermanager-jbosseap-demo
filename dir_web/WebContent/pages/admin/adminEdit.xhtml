@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello Admin</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+	<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+
+		<h:form>
+			<h:button value="Powrot" outcome="adminStart?faces-redirect=true"/>
+		</h:form>
+	</div>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+		<div class="field-all clear" >
+		<fieldset>		<legend>Lista edycji katalogu</legend>
+		
+			<h:panelGrid columns="2" cellpadding="5" class="field-table-all">
+					<h:outputLabel for="dir-name" value="Name: " />
+					<h:inputText id="dir-name" value="#{dirEditBB.name}" />
+					
+					<h:outputLabel for="dir-size" value="Size" />
+					<h:outputText id="dir-size" value="#{dirEditBB.size}" />
+					
+					<h:outputLabel for="dir-state" value="State"/>
+					<h:outputText id="dir-state" value="#{dirEditBB.idstate}" />
+					
+					<h:outputLabel for="dir-user" value="User" />
+					<h:outputText id="dir-user" value="#{dirEditBB.iduser}" />
+			</h:panelGrid>
+			<h:panelGrid columns="1" cellpadding="5" class="field-table-one">		
+					<h:commandButton value="rezerwuj/rezygnuj" action="#{dirEditBB.reserve()}" >
+						<f:param name="pageId" value="2" />
+					</h:commandButton>
+					<h:commandButton value="pobierz folder" action="#{dirEditBB.getFolder()}" />
+					<h:commandButton value="Zapisz" action="#{dirEditBB.saveData()}" />
+			</h:panelGrid>
+			
+		</fieldset>
+		</div>
+		</h:form>
+	</ui:define>
+</div>
+
+</ui:composition>
+</html>

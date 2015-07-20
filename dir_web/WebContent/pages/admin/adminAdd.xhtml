@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello Admin</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+			<h:form>
+				<h:button value="Powrot" outcome="adminStart?faces-redirect=true"/>
+			</h:form>
+		</div>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form class="edit">
+		<div class="field-all clear">
+			<fieldset>		<legend>Dodawanie katalogu</legend>
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<h:outputLabel for="dir-name" value="Name: " />
+				<h:inputText id="dir-name" value="#{dirEditBB.name}" />
+				
+				<h:outputLabel for="dir-size" value="Size" />
+				<h:inputText id="dir-size" value="#{dirEditBB.size}"  />
+				
+				<h:outputLabel for="dir-state" value="State" />
+				<h:selectOneMenu id="dir-state"
+                    value="#{dirEditBB.state}" var="slista">					        
+				    <f:selectItems value="#{stateListBB.list}" var="st" 
+				        itemLabel="#{st.state}" itemValue="#{st.idstate}" />					        
+				</h:selectOneMenu>
+				
+				<h:outputLabel for="dir-user" value="User" />
+				<h:selectOneMenu id="dir-user"
+                    value="#{dirEditBB.user}" var="ulista">
+				        <f:selectItems value="#{userListBB.list}" var="us" 
+				        itemLabel="#{us.name}" itemValue="#{us.iduser}" />
+				    </h:selectOneMenu>
+				
+				<h:commandButton value="Zapisz" action="#{dirEditBB.saveData()}" />
+				</h:panelGrid>
+			</fieldset>
+		</div>
+		</h:form>
+	</ui:define>
+	</div>
+
+</ui:composition>
+</html>

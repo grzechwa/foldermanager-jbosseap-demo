@@ -1,0 +1,183 @@
+html {
+	margin: 0;
+	padding: 0;
+	}
+nav {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 1%;
+}
+body { 
+	margin: 0; 
+	padding: 0;
+	}
+h2{
+	padding-top: 3%;
+	text-align: center;
+}
+.edit{
+	min-width: 60%;
+	margin: 0 auto;
+}
+#page-wrapper { 
+	padding: 7% 10% 0 10%;  
+	margin: 0; 
+	text-align: center; 
+	margin-top: 2em;
+	}
+	
+.field-filtr{
+	width: 30%;
+	/* margin: 0 auto; */
+	float: right;
+}
+
+.field-filtr input[type=text]{
+	width: 90%;
+}
+
+.field-table-all{
+	width: 68%;
+	float: left;
+	min-height: 200px;
+	
+	
+}	
+
+.field-table-center table{
+	width: 95%;
+	margin: 0 auto;
+	border-color: #ddd;
+	
+	
+}
+.field-table-center{
+	width: 90%;
+	margin: 0 auto;
+}	
+
+.field-table-all table{
+	width: 95%;
+	margin: 0 auto;
+	border-color: #ddd;
+	
+	
+	
+}
+td,th{
+	border-color: #ddd;	
+}
+
+.field-table-one{
+	width: 40%;
+	margin: 0 auto;
+}
+
+.field-all{
+
+}
+
+.field-all {
+	width: 50%;
+	margin: 0 auto;	
+
+}
+
+
+.nav-line {
+	margin-bottom: 2.5%;
+	background-color: #ddd;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: gray;
+	padding: 3px 8%;
+	text-align: right;
+	line-height: 120%;
+	font-size: 1.5em;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.on-click{
+	display:inline;
+}
+
+.logged{
+	font-size: 0.8em;
+	font-family: Lucida Grande;
+	float: right;
+}
+
+#log-panel{
+	padding: 2% 0 2%;
+	border-width: 1px ;
+	border-style: solid;
+	border-color: gray;
+	width: 30%;
+	
+	margin: 0 auto;
+	margin-top: 18%;
+	border-radius: 10px;
+	background-color: #fff;
+}
+#log-panel input[type=submit]{
+	width: 40%;
+}
+#log-panel input[type=text],[type=password]{
+	width: 80%;
+}
+#log-panel input:not[type=button]{
+	float:right;
+	
+	
+}
+#log-panel table{
+	width: 100%;
+}
+#log-panel td:last-child{
+	
+	text-align: center;
+}
+#log-panel td:first-child{
+	margin-left: 0.5%;
+}
+.box{
+	padding: 1em;
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+#footer{
+	padding-top:10%;
+	text-align: center;
+	font-size: 0.8em;
+	font-family: Lucida Grande;
+	padding-bottom: 2%;
+	
+}
+ul{
+	display: block;
+	widht: 50px;
+}
+li{
+	
+	float: left;
+	display: inline;
+	padding: 2% 5%;
+}
+.msg-panel{
+	
+}
+#msg-panel-log{
+	display: block;
+	width: 40%;
+	margin: 0 auto;
+}
+.msg-err{
+	color: red;
+	/*font-family: "Courier New", Courier, monospace;*/
+	font-family: Tahoma;
+}
+
+.clear{
+	clear: both;
+}

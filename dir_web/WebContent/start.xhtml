@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/start-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>&nbsp;</h2>
+	</ui:define>
+	
+	
+	<ui:define name="content">
+		<h:form>
+			<ul id="start">
+				<li><h:commandLink value="user" action="pages/user/userStart.xhtml?faces-redirect=true" /></li>
+				<li><h:commandLink value="admin" action="pages/admin/adminStart.xhtml?faces-redirect=true" /></li>
+			</ul>
+			
+			<ul id="stop">
+			<li>[Prototype-v1]</li>
+			<li><h:commandLink value="Wyloguj" action="#{loginBB.doLogout()}" /></li>
+			</ul>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

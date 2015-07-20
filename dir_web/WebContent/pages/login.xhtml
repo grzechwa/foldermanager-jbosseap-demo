@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/login-template.xhtml">
+
+	<ui:define name="content">
+	
+		<h:form id="log-panel" >
+			<h:panelGrid columns="2" cellpadding="10" >
+				<h:outputLabel for="login" value="login:  " />
+				<h:inputText id="login" value="#{loginBB.name}" />
+				<h:outputLabel for="pass" value="hasło:" />
+				<h:inputSecret id="pass" value="#{loginBB.pass}" />
+				
+				<h:outputLabel value="" />
+				<h:commandButton   value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" />
+					
+			</h:panelGrid>
+		</h:form>
+		<h:form id="msg-panel-log">
+		<div class="msg-err">
+			<h:messages />
+		</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

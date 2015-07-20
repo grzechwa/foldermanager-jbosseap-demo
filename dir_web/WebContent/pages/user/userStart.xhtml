@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello User</h2>
+
+	</ui:define>
+	
+	<div class="page-wrapper">
+	
+	<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+	
+	<ui:define name="nav-line">
+	
+		<div class="nav-line" >	
+		<h:form>
+		<h:commandButton value="Moje katalogi" action="userShowMy?faces-redirect=true" class="clear" />
+		
+			<div class="on-click">
+				<h:commandButton value="Wyloguj" action="#{loginBB.doLogout()}"/>		
+			</div>
+			
+		</h:form>
+		</div>
+		
+	</ui:define>
+
+	<ui:define name="content">
+	<div class="field-table-all">	
+	<fieldset>		<legend>Lista wszystkich</legend>
+		<h:panelGrid columns="4">
+			<h:dataTable value="#{dirListBB.list}" var="dirlist" cellpadding="5" border="1" cellspacing="0" style="width:100%;">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id dir" />
+					</f:facet>
+						<h:outputText value="#{dirlist.iddir}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+						<h:outputText value="#{dirlist.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Size" />
+					</f:facet>
+						<h:outputText value="#{dirlist.size}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id state" />
+					</f:facet>
+						<h:outputText value="#{dirlist.state.state}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id user" />
+					</f:facet>
+						<h:outputText value="#{dirlist.user.iduser}" />
+				</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+				<h:form>
+					<h:commandButton value="szczegoly"
+						action="#{dirListBB.editUserDir(dirlist)}" />
+				</h:form>
+				</h:column>
+			</h:dataTable>
+		</h:panelGrid>
+		</fieldset>
+		</div>
+	
+		<div class="field-filtr">
+		<fieldset >		<legend>Filtruj</legend>
+		<h:form> 
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="Katalog:" />
+				<h:inputText value="#{dirListBB.name}" />
+				
+				<h:commandButton value="Szukaj" update="table" />
+				
+				
+			</h:panelGrid>
+		</h:form>
+		</fieldset>
+	</div>
+	
+	</ui:define>
+	
+	</div>
+
+</ui:composition>
+</html>

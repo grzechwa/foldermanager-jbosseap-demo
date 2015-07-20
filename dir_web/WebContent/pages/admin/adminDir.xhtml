@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello Admin</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+
+	<ui:define name="nav-line">
+			<div class="nav-line" >
+		<h:form>
+			<h:button value="Powrot" outcome="adminStart?faces-redirect=true"/>
+		</h:form>
+		</div>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form class="edit">
+		<div class="field-all clear">
+			<fieldset>		<legend>Biezaca zawartosc katalogu</legend>
+			<h:panelGrid columns="2" cellpadding="5">
+			<h:dataTable value="#{dirListBB.dir()}" var="dirlist">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nazwa katalogu" />
+					</f:facet>
+						<h:outputText value="#{dirlist.name}" />	
+				</h:column>
+	
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Sciezka" />
+					</f:facet>
+						<h:outputText value="#{dirlist.canonicalPath}" />	
+				</h:column>
+	
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rozmiar" />
+					</f:facet>
+						<h:outputText value="#{dirlist.length()}" />	
+				</h:column>
+			</h:dataTable>
+			</h:panelGrid>
+			</fieldset>
+		</div>
+		</h:form>
+	</ui:define>
+	</div>
+
+</ui:composition>
+</html>

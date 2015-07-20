@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/admin-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello from Admin</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+
+	<ui:define name="nav-line">
+	<div class="nav-line" >	
+
+	<h:form>
+		<h:button value="Powrot" outcome="adminStart.xhtml?faces-redirect=true"/>
+	</h:form>
+	
+	</div>
+	</ui:define>
+	
+	<ui:define name="content">
+	<h:form>
+	<fieldset>		<legend>Lista edycji uzytkownikow</legend>
+	<div class="field-all clear" >
+		<h:panelGrid columns="2" cellpadding="5" class="field-table-all">
+
+				<h:outputLabel for="dir-name" value="Name: " />
+				<h:inputText id="dir-name" value="#{userEditBB.name}" />
+				
+				
+		</h:panelGrid>
+		<h:panelGrid columns="1" cellpadding="5" class="field-table-one">		
+				<h:commandButton value="rezerwuj/rezygnuj" action="#{dirEditBB.reserve()}" />
+				<h:commandButton value="pobierz katalog" action="#{dirEditBB.pobierz()}" />
+				<h:commandButton value="Zapisz" action="#{dirEditBB.saveData()}" />
+		</h:panelGrid>
+		</div>
+	</fieldset>
+	</h:form>
+	</ui:define>
+	</div>
+
+</ui:composition>
+</html>

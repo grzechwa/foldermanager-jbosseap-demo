@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/templates/user-template.xhtml">
+
+	<ui:define name="header" >
+		<h2>Hello</h2>
+	</ui:define>
+	
+	<div class="page-wrapper">
+<ui:define name="logged">
+		<div class="logged">
+			<h:outputLabel value="Jestes zalogowany jako: #{loginBB.user.name}" />
+		</div> 		<div class="clear" />		
+		
+	</ui:define>
+
+	<ui:define name="nav-line">
+		<div class="nav-line" >	
+	
+	<h:form>
+		<h:button value="Powrot" outcome="adminStart?faces-redirect=true"/>
+	</h:form>
+	
+	</div>
+	</ui:define>
+	
+	<ui:define name="content">
+	<h:form id="myForm" class="edit">
+		<div class="field-all clear">
+		<fieldset>		<legend>Dodawanie roli</legend>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="role-group" value="Grupa: " />
+				
+				<input type="text" id="txtAnotherProperty" name="txtAnotherProperty" />
+				
+				<h:commandButton value="Zapisz" action="#{roleEditBB.addRole()}" />
+		</h:panelGrid>
+		</fieldset>
+		</div>
+	</h:form>
+	</ui:define>
+	</div>
+
+</ui:composition>
+</html>
